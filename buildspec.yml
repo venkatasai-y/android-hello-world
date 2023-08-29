@@ -1,36 +1,27 @@
 version: 0.2
 
 phases:
-  install:
-    runtime-versions:
-      java:  corretto8
-    commands:
-      # Install required dependencies
-      - apt-get update && apt-get install -y unzip
-      # Download Android SDK command line tools
-      - wget https://dl.google.com/android/repository/commandlinetools-linux-7302050_latest.zip -O commandlinetools.zip
-      - unzip commandlinetools.zip -d /android-sdk
-      - rm commandlinetools.zip
-      # Set environment variables for SDK
-      - export ANDROID_HOME=/android-sdk
-      - export PATH=$PATH:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
-      # Accept licenses
-      - yes | sdkmanager --licenses
-      # Install necessary SDK components
-      - sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3" # Modify as needed
-
   pre_build:
     commands:
-      - echo "Pre-build phase"
-      - echo "Navigate to your Android project directory"
-      - cd path/to/your/android/project
+      - echo "Installing Java and Android SDK"
+      - apt-get update -y
+      - apt-get install -y openjdk-8-jdk
+      - wget -q https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -O android-sdk.zip
+      - unzip -q android-sdk.zip -d android-sdk
+      - export ANDROID_HOME=$PWD/android-sdk
+      - export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
+      - yes | sdkmanager --licenses
+      - sdkmanager "platform-tools" "build-tools;30.0.3" "platforms;android-30"
+  
   build:
     commands:
-      - echo "Build phase"
-      - ./gradlew assembleDebug
+      - echo "Building the Android APK"
+      # Add your actual build commands here
+
 artifacts:
-  files:
-    - path/to/your/android/project/app/build/outputs/apk/debug/app-debug.apk
+  files: 
+    - '**/*'
+
 
 
 
