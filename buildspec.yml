@@ -1,10 +1,9 @@
-
 version: 0.2
 
 phases:
   install:
     runtime-versions:
-      java: openjdk17
+      java: openjdk11
     commands:
       # Install required dependencies
       - apt-get update && apt-get install -y unzip
@@ -32,7 +31,4 @@ phases:
 artifacts:
   files:
     - path/to/your/android/project/app/build/outputs/apk/debug/app-debug.apk
-
-      - cd path/to/your/android/project
-pk/debug/app-debug.apk
-
+--
