@@ -7,8 +7,8 @@ phases:
       
     commands:
       - echo "Installing Android SDK"
-      - sudo amazon-linux-extras install -y epel
-      - sudo yum install -y wget unzip
+      - amazon-linux-extras install -y epel
+      - yum install -y wget unzip
       
       # Download and install Android SDK
       - wget -q https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip -O android-sdk.zip
