@@ -2,19 +2,17 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      java: corretto8 # Install Amazon Corretto 8 (Java 8)
-      
     commands:
-      - echo "Installing Android SDK"
-      - amazon-linux-extras install -y epel
-      - yum install -y wget unzip
+      - echo "Installing Java and Android SDK"
+      - sudo yum update -y
+      - sudo yum install -y java-1.8.0-openjdk-devel
+      - sudo yum install -y wget unzip
       
       # Download and install Android SDK
-      - wget -q https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip -O android-sdk.zip
+      - wget -q https://dl.google.com/android/repository/sdk-tools-linux-7583922.zip -O android-sdk.zip
       - unzip -q android-sdk.zip -d android-sdk
-      - export ANDROID_HOME=$PWD/android-sdk/cmdline-tools
-      - export PATH=$PATH:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
+      - export ANDROID_HOME=$PWD/android-sdk
+      - export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
       - yes | sdkmanager --licenses
       - sdkmanager "platform-tools" "build-tools;30.0.3" "platforms;android-30"
 
@@ -26,7 +24,5 @@ phases:
 artifacts:
   files:
     - '**/*'
-
-
 
 
