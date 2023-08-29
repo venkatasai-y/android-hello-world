@@ -6,7 +6,7 @@ phases:
       java: corretto8
     commands:
       # Install required dependencies
-       apt-get update && apt-get install -y unzip
+       - apt-get update && apt-get install -y unzip
       # Download Android SDK command line tools
       - wget https://dl.google.com/android/repository/commandlinetools-linux-7302050_latest.zip -O commandlinetools.zip
       - unzip commandlinetools.zip -d /android-sdk
