@@ -4,9 +4,9 @@ phases:
   install:
     commands:
       - echo "Installing Java and Android SDK"
-      - sudo yum update -y
-      - sudo yum install -y java-1.8.0-openjdk-devel
-      - sudo yum install -y wget unzip
+      - yum update -y
+      - yum install -y java-1.8.0-openjdk-devel
+      - yum install -y wget unzip
       
       # Download and install Android SDK
       - wget -q https://dl.google.com/android/repository/sdk-tools-linux-7583922.zip -O android-sdk.zip
