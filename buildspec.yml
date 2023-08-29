@@ -31,6 +31,6 @@ phases:
 artifacts:
   files:
     - path/to/your/android/project/app/build/outputs/apk/debug/app-debug.apk
---
+
 
 
